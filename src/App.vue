@@ -1,60 +1,65 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+<!-- App.vue -->
+<v-app>
 
-      <v-spacer></v-spacer>
+  <!-- Sizes your content based upon application components -->
+  <v-main>
+  <app-bar></app-bar>
+    <!-- Provides the application the proper gutter -->
+    <v-container class="full-height" fluid>
+          
+      <!-- If using vue-router -->
+      <router-view></router-view>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+    </v-container>
+  </v-main>
 
-    <v-main>
-      <UserLogin/>
-    </v-main>
-  </v-app>
+
+</v-app>
+
+  
 </template>
 
+
 <script>
-import UserLogin from './components/Users/UserLogin.vue';
-
+import AppBar from './components/Layout/AppBar.vue'
 export default {
-  name: 'App',
-
-  components: {
-    UserLogin,
+  data(){
+    return {
+      drawer:true
+    }
   },
+  methods: {
+    
+  },
+  computed:{
 
-  data: () => ({
-    //
-  }),
-};
+  },
+  components: { AppBar },
+}
 </script>
+
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>

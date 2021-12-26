@@ -1,49 +1,32 @@
-
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module update
-  </p>
+    <v-alert
+      border="top"
+      color="primary"
+      class="ma-2"
+    >
+      I'm an alert with a top border and primary color
+    </v-alert>
+    <v-alert
+      border="end"
+      color="secondary"
+      class="ma-2"
+    >
+      I'm an alert with an end border and secondary color
+    </v-alert>
+    <v-alert
+      border="bottom"
+      color="success"
+      class="ma-2"
+    >
+      I'm an alert with a bottom border and success color
+    </v-alert>
+    <v-alert
+      border="start"
+      color="error"
+      class="ma-2"
+    >
+      I'm an alert with a start border and error color
+    </v-alert>
   </div>
 </template>
-
-<script >
-  export default{
-    props:{
-      msg:{
-        type:String
-      }
-    },
-    data(){
-      return {
-        count:0
-      }
-    }
-  }
-</script>
-
-
-<style scoped>
-a {
-  color: #42b983;
-}
-</style>

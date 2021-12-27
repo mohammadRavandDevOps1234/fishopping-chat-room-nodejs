@@ -23,7 +23,7 @@
 
 
 <script>
-import AppBar from './components/Layout/AppBar.vue'
+import AppBar from '/src/components/Layout/AppBar.vue'
 export default {
   data(){
     return {

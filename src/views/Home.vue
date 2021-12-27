@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <v-row class="fill-height height-100vh">
-      <v-col cols="2"  sm="2"  md="2"   lg="2" xl="2"    class="info">
+      <v-col cols="2" sm="2" md="2" lg="2" xl="2" class="info">
         <!-- show groups -->
-        <v-navigation-drawer  permanent :expand-on-hover="windowWidth">
+        <v-navigation-drawer permanent :expand-on-hover="windowWidth">
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title class="text-h6">
@@ -22,53 +22,96 @@
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  
+                  <v-list-item-title>
+
+                    {{ item.title }} 
+                    
+                  </v-list-item-title>
+                  
               </v-list-item-content>
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
       </v-col>
-      <v-col sm="8"  md="9"   lg="10" xl="10"   class=" postion-relative" >
+      <v-col sm="8" md="9" lg="10" xl="10" class="postion-relative">
         <!-- show chat message -->
+          <!-- show online user for group -->
+        <ChatGroupOnlineUsers class="" :drawerProp="showOnlineGroupContacts" @changeDrawer="changeDrawer"></ChatGroupOnlineUsers>
 
+        <v-card height="100%" class="pink">
+          <v-card color="grey lighten-4" flat tile>
+            <v-toolbar>
+              <p class="mr-4"></p>
+              <v-toolbar-title>گروه نزدیکترین فروشگاه ها</v-toolbar-title>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon @click="toggleShowSearchInGroup">
+                <v-icon>mdi-magnify</v-icon>
+              </v-btn>
+              <v-text-field
+                dir="rtl"
+                v-model="message"
+                label="جسجتو"
+                clearable
+                v-show="showSearchInGroup"
+              ></v-text-field>
+
+              <v-btn icon @click="ToggleShowOnlineGroupContacts">
+                <v-icon>mdi-contacts</v-icon>
+              </v-btn>
+            </v-toolbar>
+          </v-card>
+        </v-card>
         <!-- show chat input -->
         <chat-input></chat-input>
       </v-col>
-
-      
     </v-row>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import ChatInput from '../components/Chat/ChatInput.vue'
-
+import ChatInput from "/src/components/Chat/ChatInput.vue";
+import ChatGroupOnlineUsers from '/src/components/GroupChat/ChatGroupOnlineUsers.vue'
 export default {
   name: "Home",
-  data(){
+  data() {
     return {
-      windowWidth: window.innerWidth<800,
-       items: [
-          { title: 'گروه مصرف کنندگان نزدیک', icon: 'mdi-account-multiple' },
-          { title: 'مصرف کنندگان شهر', icon: 'mdi-account-search' },
-          { title: 'About', icon: 'mdi-help-box' },
-        ],
-        right: null,
+      showOnlineGroupContacts:false,
+      windowWidth: window.innerWidth < 800,
+      message: "",
+      showSearchInGroup: false,
+      items: [
+        { title: "گروه مصرف کنندگان نزدیک", icon: "mdi-account-multiple" },
+        { title: "مصرف کنندگان شهر", icon: "mdi-account-search" },
+        { title: "About", icon: "mdi-help-box" },
+      ],
+      right: null,
+    };
+  },
+  methods: {
+    toggleShowSearchInGroup() {
+      this.showSearchInGroup = !this.showSearchInGroup;
+    },
+    ToggleShowOnlineGroupContacts(){
+      this.showOnlineGroupContacts = !this.showOnlineGroupContacts;
+    },
+    changeDrawer(drawerComponentValue){
+      this.showOnlineGroupContacts = drawerComponentValue;
     }
   },
 
-  
-  components: {ChatInput},
+  components: { ChatInput,ChatGroupOnlineUsers },
 };
 </script>
 
 <style scoped>
-
-.height-100vh{
-  min-height:85vh;
+.height-100vh {
+  min-height: 85vh;
 }
-.postion-relative{
+.postion-relative {
   position: relative;
 }
 </style>
